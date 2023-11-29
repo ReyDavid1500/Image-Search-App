@@ -4,7 +4,7 @@ import { SearchResults } from "./types";
 const ACCESS_KEY: string = import.meta.env.VITE_APP_ACCESS_KEY;
 
 function App(): JSX.Element {
-  const [search, setSearch] = useState<string>("");
+  const [search, setSearch] = useState<string>("Random");
   const [data, setData] = useState<SearchResults[] | undefined>([]);
   const [page, setPage] = useState<number>(1);
 
@@ -63,9 +63,9 @@ function App(): JSX.Element {
         <ul>
           {data?.map((result) => (
             <li key={result.id}>
-              <h2>{result.description}</h2>
+              {/* <h2>{result.description}</h2> */}
               <img src={result.urls.small} alt={result.description || ""} />
-              <p className="description">{result.alt_description}</p>
+              {/* <p className="description">{result.alt_description}</p> */}
             </li>
           ))}
         </ul>
