@@ -63,9 +63,11 @@ function App(): JSX.Element {
         <ul>
           {data?.map((result) => (
             <li key={result.id}>
-              {/* <h2>{result.description}</h2> */}
               <img src={result.urls.small} alt={result.description || ""} />
-              {/* <p className="description">{result.alt_description}</p> */}
+              <div className="desc-box">
+                {/* <h2>{result.description}</h2>
+                <p className="description">{result.alt_description}</p> */}
+              </div>
             </li>
           ))}
         </ul>
