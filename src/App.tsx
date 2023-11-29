@@ -1,13 +1,12 @@
 import { useEffect, useState } from "react";
 import { SearchResults } from "./types";
 
-const ACCESS_KEY = "PVjCUJ18QodWkOQK8juX1FWBMXeFCqPN5mUaLNKozLU";
+const ACCESS_KEY: string = import.meta.env.VITE_APP_ACCESS_KEY;
 
 function App(): JSX.Element {
   const [search, setSearch] = useState<string>("");
   const [data, setData] = useState<SearchResults[] | undefined>([]);
   const [page, setPage] = useState<number>(1);
-  console.log(page, data);
 
   const getResults = async () => {
     try {
