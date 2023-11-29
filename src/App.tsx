@@ -7,6 +7,9 @@ function App(): JSX.Element {
   const [search, setSearch] = useState<string>("Random");
   const [data, setData] = useState<SearchResults[] | undefined>([]);
   const [page, setPage] = useState<number>(1);
+  const [hoveredImgId, setHoveredImgId] = useState<string | undefined>();
+  const [isVisible, setIsVisible] = useState<boolean>(false);
+  const [timeoutId, setTimeoutId] = useState<number | null>(null);
 
   const getResults = async () => {
     try {
@@ -44,6 +47,24 @@ function App(): JSX.Element {
     setPage((prevPage) => prevPage - 1);
   };
 
+  const handleMouseOver = (
+    e: React.MouseEvent<HTMLImageElement, MouseEvent>
+  ) => {
+    const imgId = e.currentTarget.dataset.id;
+    const timeout = setTimeout(() => {
+      setHoveredImgId(imgId);
+      setIsVisible(true);
+    }, 500);
+    setTimeoutId(timeout);
+  };
+
+  const handleMouseLeave = () => {
+    // const imgIndex = e.currentTarget.dataset.id;
+    clearTimeout(timeoutId);
+    setHoveredImgId(undefined);
+    setIsVisible(false);
+  };
+
   return (
     <div className="page">
       <header>
@@ -63,11 +84,19 @@ function App(): JSX.Element {
         <ul>
           {data?.map((result) => (
             <li key={result.id}>
-              <img src={result.urls.small} alt={result.description || ""} />
-              <div className="desc-box">
-                {/* <h2>{result.description}</h2>
-                <p className="description">{result.alt_description}</p> */}
-              </div>
+              <img
+                data-id={result.id}
+                onMouseOver={handleMouseOver}
+                onMouseLeave={handleMouseLeave}
+                src={result.urls.small}
+                alt={result.description || ""}
+              />
+              {hoveredImgId === result.id && isVisible && (
+                <div className="desc-box">
+                  <h2>{result.description}</h2>
+                  <p className="description">{result.alt_description}</p>
+                </div>
+              )}
             </li>
           ))}
         </ul>

@@ -68,7 +68,7 @@ form {
 
 ul {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(345px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
   justify-content: center;
   row-gap: 8px;
   align-items: center;
@@ -82,16 +82,37 @@ li {
   flex-direction: column;
   padding: 2px;
   align-items: center;
+  justify-content: center;
   width: auto;
+  padding: 0;
+  position: relative;
+  height: 100%;
+}
+
+h2,
+p {
+  margin: 0;
   padding: 0;
 }
 
 .desc-box {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   gap: 0;
   margin: 0;
-  visibility: hidden;
+  width: 80%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  border: 2px solid black;
+  background: #1a1a1a;
+  color: white;
+  border-radius: 10px;
+  width: fit-content;
+  height: fit-content;
+  padding: 8px;
 }
 
 img {
