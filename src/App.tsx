@@ -4,7 +4,7 @@ import { SearchResults } from "./types";
 const ACCESS_KEY: string = import.meta.env.VITE_APP_ACCESS_KEY;
 
 function App(): JSX.Element {
-  const [search, setSearch] = useState<string>("Random");
+  const [search, setSearch] = useState<string>("random");
   const [data, setData] = useState<SearchResults[] | undefined>([]);
   const [page, setPage] = useState<number>(1);
   const [hoveredImgId, setHoveredImgId] = useState<string | undefined>();
@@ -59,7 +59,6 @@ function App(): JSX.Element {
   };
 
   const handleMouseLeave = () => {
-    // const imgIndex = e.currentTarget.dataset.id;
     clearTimeout(timeoutId);
     setHoveredImgId(undefined);
     setIsVisible(false);
@@ -72,6 +71,7 @@ function App(): JSX.Element {
         <form onSubmit={handleSubmit} className="form">
           <input
             onChange={handleChange}
+            defaultValue={search}
             type="text"
             name="query"
             value={search}
@@ -107,7 +107,7 @@ function App(): JSX.Element {
         ) : (
           <div className="result-page">
             <button
-              disabled={data?.length === 1}
+              disabled={page === 1}
               onClick={handleClickPrev}
               className="more-button"
             >
