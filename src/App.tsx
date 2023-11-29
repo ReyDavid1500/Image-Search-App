@@ -9,7 +9,7 @@ function App(): JSX.Element {
   const [page, setPage] = useState<number>(1);
   const [hoveredImgId, setHoveredImgId] = useState<string | undefined>();
   const [isVisible, setIsVisible] = useState<boolean>(false);
-  const [timeoutId, setTimeoutId] = useState<number | null>(null);
+  const [timeoutId, setTimeoutId] = useState<NodeJS.Timeout | undefined>();
 
   const getResults = async () => {
     try {
@@ -77,7 +77,9 @@ function App(): JSX.Element {
             value={search}
             placeholder="Gato, perro, avión..."
           />
-          <button type="submit">Buscar</button>
+          <button className="search-button" type="submit">
+            Buscar
+          </button>
         </form>
       </header>
       <main>
@@ -93,7 +95,7 @@ function App(): JSX.Element {
               />
               {hoveredImgId === result.id && isVisible && (
                 <div className="desc-box">
-                  <h2>{result.description}</h2>
+                  <h3>{result.description}</h3>
                   <p className="description">{result.alt_description}</p>
                 </div>
               )}
