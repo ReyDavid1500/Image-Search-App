@@ -2,7 +2,7 @@
   "name": "image-app",
   "private": true,
   "version": "0.0.0",
-  "homepage": "https://reydavid1500.github.io/image-app/",
+  "homepage": "https://ReyDavid1500.github.io/image-app",
   "type": "module",
   "scripts": {
     "predeploy": "npm run build",
